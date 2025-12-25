@@ -1,6 +1,6 @@
 locals {
   tags = {
-    "be.icteam:project"     = var.project
+    "be.icteam:project"     = "{{ project_name }}"
     "be.icteam:environment" = var.environment
   }
 }
