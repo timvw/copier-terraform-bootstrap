@@ -2,6 +2,8 @@
 
 Copier template that scaffolds a Terraform layout with `terraform/stacks` and a `terraform/modules/tags` module.
 
+Template files live under `template/` so this README is not copied into generated projects.
+
 ## Usage
 
 ```bash
