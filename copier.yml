@@ -1,0 +1,7 @@
+_min_copier_version: "8.0.0"
+_answers_file: .copier-answers.yml
+
+project_name:
+  type: str
+  default: "{{ _folder_name }}"
+  help: "Project name used for the be.icteam:project tag"
