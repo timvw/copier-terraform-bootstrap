@@ -11,9 +11,11 @@ _tasks:
       import_line = "import 'justfiles/terraform.just'"
       marker = "justfiles/terraform.just"
 
+      target = None
       for jf in candidates:
           if not jf.exists():
               continue
+          target = jf
           text = jf.read_text()
           if marker in text:
               break
@@ -27,6 +29,10 @@ _tasks:
 
           jf.write_text("\n".join(lines) + "\n")
           break
+      else:
+          # No existing Justfile; create a new one with the import line.
+          target = candidates[0]
+          target.write_text(import_line + "\n")
       PY
 
 project_name:
