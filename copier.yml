@@ -2,6 +2,32 @@ _min_copier_version: "9.0.0"
 _answers_file: .copier-answers.yml
 _subdirectory: template
 _templates_suffix: ""
+_tasks:
+  - command: |
+      python3 - <<'PY'
+      from pathlib import Path
+
+      candidates = [Path('Justfile'), Path('justfile')]
+      import_line = "import 'justfiles/terraform.just'"
+      marker = "justfiles/terraform.just"
+
+      for jf in candidates:
+          if not jf.exists():
+              continue
+          text = jf.read_text()
+          if marker in text:
+              break
+
+          lines = text.splitlines()
+          # Keep shebangs at the top if present.
+          if lines and lines[0].startswith('#!'):
+              lines.insert(1, import_line)
+          else:
+              lines.insert(0, import_line)
+
+          jf.write_text("\n".join(lines) + "\n")
+          break
+      PY
 
 project_name:
   type: str
