@@ -7,7 +7,7 @@ Template files live under `template/` so this README is not copied into generate
 ## Usage
 
 ```bash
-copier copy https://github.com/timvw/copier-terraform-bootstrap.git /path/to/your/repo
+copier copy --trust https://github.com/timvw/copier-terraform-bootstrap.git /path/to/your/repo
 ```
 
 The `project_name` prompt defaults to the destination folder name.
