@@ -2,38 +2,6 @@ _min_copier_version: "9.0.0"
 _answers_file: .copier-answers.yml
 _subdirectory: template
 _templates_suffix: ""
-_tasks:
-  - command: |
-      python3 - <<'PY'
-      from pathlib import Path
-
-      candidates = [Path('Justfile'), Path('justfile')]
-      import_line = "import 'justfiles/terraform.just'"
-      marker = "justfiles/terraform.just"
-
-      target = None
-      for jf in candidates:
-          if not jf.exists():
-              continue
-          target = jf
-          text = jf.read_text()
-          if marker in text:
-              break
-
-          lines = text.splitlines()
-          # Keep shebangs at the top if present.
-          if lines and lines[0].startswith('#!'):
-              lines.insert(1, import_line)
-          else:
-              lines.insert(0, import_line)
-
-          jf.write_text("\n".join(lines) + "\n")
-          break
-      else:
-          # No existing Justfile; create a new one with the import line.
-          target = candidates[0]
-          target.write_text(import_line + "\n")
-      PY
 
 project_name:
   type: str
