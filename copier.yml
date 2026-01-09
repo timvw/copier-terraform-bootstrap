@@ -7,3 +7,8 @@ project_name:
   type: str
   default: "{{ _folder_name }}"
   help: "Project name used for the be.icteam:project tag"
+
+project_source:
+  type: src
+  default: "{{ _project_source }}"
+  help: "Location where the source code is stored (eg: git@github.com:timvw/copier-terraform-bootstrap.git)"
